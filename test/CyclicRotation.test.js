@@ -46,3 +46,27 @@ describe('CyclicRotation', function() {
       assert.deepEqual(actual,expected);
     });
 });
+
+describe('CyclicRotation', function() {
+    it('should rotate array of two elements', function() {
+      const input = [1,2];
+      const rotation = 1;
+
+      var expected = [2,1];
+      var actual = solution(input, rotation);
+
+      assert.deepEqual(actual,expected);
+    });
+});
+
+describe('CyclicRotation', function() {
+    it('should rotate array properly given a bigger array', function() {
+      const input = [2, 3, 4, 5, 6, 7, 1];
+      const rotation = 3;
+
+      var expected = [6,7,1,2,3,4,5];
+      var actual = solution(input, rotation);
+
+      assert.deepEqual(actual,expected);
+    });
+});
