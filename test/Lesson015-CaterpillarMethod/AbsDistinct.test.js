@@ -32,6 +32,18 @@ describe('Lesson 15 - Caterpillar method - AbsDistinct', function () {
 });
 
 describe('Lesson 15 - Caterpillar method - AbsDistinct', function () {
+    it('detects elements repeated odd number of times', function () {
+        scenario([-2, -1, 1, 1, 2], 2);
+    });
+});
+
+describe('Lesson 15 - Caterpillar method - AbsDistinct', function () {
+    it('can count numbers repeated even times in the middle', function () {
+        scenario([-2, -2, 1, 1, 2], 2);
+    });
+});
+
+describe('Lesson 15 - Caterpillar method - AbsDistinct', function () {
     it('counts elements by absolute value', function () {
         scenario([-2, 2], 1);
     });
