@@ -1,53 +1,59 @@
 module.exports =
     function solution(A) {
 
-        if (A.length < 2)
-            return A.length;
-
+        // TODO: refactor - after first call the object will be in inconsistent state
         const cat = {
             head: A.length - 1,
             tail: 0,
             count: 0,
             previousIndex: null,
-            previousBalanced : null,
+            previousBalanced: null,
             canShrink: function () { return this.head > this.tail; },
             bigHead: function () { return Math.abs(A[this.head]) > Math.abs(A[this.tail]); },
             balanced: function () { return Math.abs(A[this.head]) === Math.abs(A[this.tail]); },
             differentAbs: function (i, j) { return Math.abs(A[j]) !== Math.abs(A[i]); },
+            countDistinctElementsByAbsoluteValue: function () {
+
+                if (A.length < 2)
+                    return A.length;
+
+                while (this.canShrink()) {
+                    if (this.bigHead()) {
+                        this.previousIndex = this.head;
+                        this.previousBalanced = false;
+                        if (this.differentAbs(this.head, --this.head))
+                            this.count++;
+                    }
+                    else if (this.balanced()) {
+                        this.previousIndex = this.head;
+                        this.previousBalanced = true;
+                        if (this.differentAbs(this.head, --this.head) & this.differentAbs(this.tail, ++this.tail))
+                            this.count++;
+                    }
+                    else // big tail
+                    {
+                        this.previousIndex = this.tail;
+                        this.previousBalanced = false;
+                        if (this.differentAbs(this.tail, ++this.tail))
+                            this.count++;
+                    }
+                }
+
+                if (this.head === this.tail) {
+                    if (this.differentAbs(this.head, this.previousIndex) || this.previousBalanced)
+                        this.count++;
+                }
+                else if (this.head < this.tail) {
+                    this.count++;
+                }
+
+                if (this.count === 0)
+                    this.count++;
+
+                return this.count;
+            }
         };
 
-        while (cat.canShrink()) {
-            if (cat.bigHead()) {
-                cat.previousIndex = cat.head;
-                cat.previousBalanced = false;
-                if (cat.differentAbs(cat.head, --cat.head))
-                    cat.count++;
-            }
-            else if (cat.balanced()) {
-                cat.previousIndex = cat.head;
-                cat.previousBalanced = true;
-                if (cat.differentAbs(cat.head, --cat.head) & cat.differentAbs(cat.tail, ++cat.tail))
-                    cat.count++;
-            }
-            else // big tail
-            {
-                cat.previousIndex = cat.tail;
-                cat.previousBalanced = false;
-                if (cat.differentAbs(cat.tail, ++cat.tail))
-                    cat.count++;
-            }
-        }
+        return cat.countDistinctElementsByAbsoluteValue();
 
-        if (cat.head === cat.tail) {
-            if (cat.differentAbs(cat.head, cat.previousIndex) || cat.previousBalanced)
-                cat.count++;
-        }
-        else if (cat.head < cat.tail) {
-            cat.count++;
-        }
-
-        if (cat.count === 0)
-            cat.count++;
-
-        return cat.count;
     }
