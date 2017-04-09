@@ -1,7 +1,7 @@
 module.exports =
     function solution(A, B) {
 
-        if (A.length == 0)
+        if (A.length === 0)
             return 0;
 
         var count = 1;
