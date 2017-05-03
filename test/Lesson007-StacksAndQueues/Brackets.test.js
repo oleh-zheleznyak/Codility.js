@@ -14,6 +14,18 @@ describe('Lesson 7 - Stacks and Queues - Brackets', function () {
 });
 
 describe('Lesson 7 - Stacks and Queues - Brackets', function () {
+    it('pairs of all brackets are valid nesting', function () {
+        scenario("()[]{}", 1);
+    });
+});
+
+describe('Lesson 7 - Stacks and Queues - Brackets', function () {
+    it('one pair of brackets is valid nesting', function () {
+        scenario("()", 1);
+    });
+});
+
+describe('Lesson 7 - Stacks and Queues - Brackets', function () {
     it('empty string is valid nesting', function () {
         scenario("", 1);
     });

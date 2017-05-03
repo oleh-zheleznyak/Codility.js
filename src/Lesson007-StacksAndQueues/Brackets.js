@@ -7,35 +7,27 @@ module.exports =
         if (S.length === 0)
             return proper_nesting;
 
-        const isOpeningBracket = function isOpeningBracket(char) {
-            if (char === "(" || char === "{" || char === "[")
-                return true;
-            return false;
-        }
-
-        const isClosingBracket = function isClosingBracket(char) {
-            if (char === ")" || char === "}" || char === "]")
-                return true;
-            return false;
-        }
-
-        const isMatchingPair = function isMatchingPair(left, right) {
-            if (left === "(") return right === ")";
-            else if (left === "[") return right === "]";
-            else if (left === "{") return right === "}";
-            else return false;
-        }
+        const openingSet = new Set(["(", "[", "{"]);
+        const closingSet = new Set([")", "]", "}"]);
+        const map = new Map();
+        map.set("(", ")");
+        map.set("[", "]");
+        map.set("{", "}");
 
         let stack = [];
         stack.peek = function () {
             return stack[stack.length - 1];
         };
 
+        const isMatchingLastInStack = function (char) {
+            return stack.length > 0 && closingSet.has(char) && map.get(stack.peek()) === char;
+        };
+
         for (let i = 0; i < S.length; i++) {
 
-            if (isOpeningBracket(S[i]))
+            if (openingSet.has(S[i]))
                 stack.push(S[i]);
-            else if (stack.length > 0 && isClosingBracket(S[i]) && isMatchingPair(stack.peek(), S[i]))
+            else if (isMatchingLastInStack(S[i]))
                 stack.pop();
             else
                 return invalid_nesting;
