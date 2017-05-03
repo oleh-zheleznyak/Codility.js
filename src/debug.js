@@ -1,3 +1,3 @@
-var solution = require('../src/Lesson015-CaterpillarMethod/AbsDistinct.js');
-var input = [-2, -2, 1, 1, 2]
+var solution = require('../src/Lesson007-StacksAndQueues/Brackets.js');
+var input = "([)()]";
 var result = solution(input);
