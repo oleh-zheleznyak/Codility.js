@@ -1,3 +1,3 @@
-var solution = require('../src/Lesson015-CaterpillarMethod/CountTriangles.js');
-var input = [10, 2, 5, 1, 8, 12];
-var result = solution(input);
+var solution = require('../src/Lesson015-CaterpillarMethod/CountDistinctSlices.js');
+var input = [1,2,1];
+var result = solution(2,input);
