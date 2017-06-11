@@ -35,3 +35,9 @@ describe('Lesson 15 - Caterpillar method - CountDistinctSlices', function () {
         scenario([1,2,1], 2, 5);
     });
 });
+
+describe('Lesson 15 - Caterpillar method - CountDistinctSlices', function () {
+    it('should return correct amount on a repetitive array', function () {
+        scenario([1,2,1,2], 2, 4+3);
+    });
+});
