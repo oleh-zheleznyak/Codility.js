@@ -6,30 +6,36 @@ module.exports =
         if (N < 2) return 1;
         if (M < 1) return 1;
 
-        var map = new Map(); // this can either be a hash table, or an array with direct addressing
+        var counter = 0;
+        let head = 0;
+        let tail = 0;
+        let firstOccurence = [];
+        const maxResult = 1000000000;
 
-        var counter = N; // we have N distinct 1-element slices at minimum
-        var tail = 0;
-        var head = 0;
-
-        while (head < N) {
-            while (head < N && !map.has(A[head])) {
-                map.set(A[head], head);
-                head++;
+        while (tail < N && tail <= head) {
+            while (head < N) {
+                if (firstOccurence[A[head]] == undefined) {
+                    firstOccurence[A[head]] = head;
+                    head++;
+                }
+                else {
+                    break;
+                }
             }
 
-            let countOfElements = head - tail;
-            if (countOfElements > 1) { // do not count 1-element slices
-                let sumOfArithmeticProg = (1 + countOfElements) * countOfElements / 2;
-                counter += sumOfArithmeticProg - countOfElements; // do not count 1-element slices
-            }
+            let newTail = firstOccurence[A[head]] != undefined ?
+                firstOccurence[A[head]] :
+                N;
 
-            let newTail = map.get(A[head]) + 1;
-            while (tail < newTail) {
-                map.delete(A[tail]);
+            while (tail <= newTail) {
+                let length = head - tail;
+                counter += length;
+
+                if (counter > maxResult) return maxResult;
+
+                firstOccurence[A[tail]] = undefined;
                 tail++;
             }
-
         }
 
         return counter;
