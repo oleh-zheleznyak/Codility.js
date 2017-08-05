@@ -1,5 +1,5 @@
 var assert = require('assert');
-var solution = require('../src/TieRopes.js');
+var solution = require('../../src/Lesson016-GreedyAlgorithms/TieRopes.js');
 
 describe('TieRopes', function () {
     it('should produce correct number of tied ropes for Codility example', function () {

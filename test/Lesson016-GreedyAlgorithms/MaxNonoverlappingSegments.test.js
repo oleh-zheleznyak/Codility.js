@@ -1,5 +1,5 @@
 var assert = require('assert');
-var solution = require('../src/MaxNonoverlappingSegments.js');
+var solution = require('../../src/Lesson016-GreedyAlgorithms/MaxNonoverlappingSegments.js');
 
 describe('MaxNonoverlappingSegments', function () {
     it('should compute maximum count of non-intersecting segments correctly for Codility example', function () {
