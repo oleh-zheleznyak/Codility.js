@@ -1,3 +1,3 @@
-var solution = require('../src/Lesson015-CaterpillarMethod/CountDistinctSlices.js');
-var input = [1,1,1];
-var result = solution(1,input);
+var solution = require('../src/Lesson004-CountingElements/PermCheck.js');
+var input = [1,1];
+var result = solution(input);
